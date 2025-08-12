@@ -122,6 +122,9 @@ git push origin master
     - `channel_name_note`: 任意。管理用のメモです。
     - `backup_enabled`: 必須。`true`に設定されたチャンネルのみバックアップされます。
 
+    **プライベートチャンネルの注意点:**
+    Slack APIの仕様上、プライベートチャンネルをバックアップするには、まずBotをそのチャンネルに招待する必要があります。Botが招待されていないプライベートチャンネルは、チャンネルリスト取得スクリプト (`scripts/populate_channels.csv.py`) を実行しても一覧に表示されません。
+
 5.  **リポジトリのSecrets設定**: 以下をリポジトリのSecretsに設定します。
     -   `SLACK_BOT_TOKEN`: あなたのSlack BotのOAuthトークン。
 6.  **Python依存関係のインストール**:
@@ -185,6 +188,9 @@ The goal is to validate the accuracy, execution time, and operational flow of th
     - `channel_id`: Required. The ID of the target channel.
     - `channel_name_note`: Optional. A note for management purposes.
     - `backup_enabled`: Required. Only channels with this set to `true` will be backed up.
+
+    **Note on Private Channels:**
+    Due to Slack API specifications, to back up a private channel, you must first invite the Bot to that channel. Private channels to which the Bot has not been invited will not appear in the list even after running the channel list acquisition script (`scripts/populate_channels.csv.py`).
 
 5.  **Set Repository Secrets**:
     -   `SLACK_BOT_TOKEN`: Your Slack Bot User OAuth Token.
