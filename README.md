@@ -137,10 +137,10 @@ git push origin master
 GitHub Actionsのワークフロー (`.github/workflows/slack-backup.yml`) は、毎日定時（UTC 15:00 / JST 00:00）に実行されるほか、手動での実行も可能です。
 
 1.  リポジトリをチェックアウトします。
-2.  Pythonスクリプト (`scripts/slack_backup.py`) を実行し、過去24時間分のメッセージを取得します。
-3.  取得したメッセージをTSVファイルに整形します。
-4.  ファイルを `archives/<channel-id>/<YYYY>/<MM>/<channel>_<YYYY-MM-DD>.tsv` のパスに保存します。
-5.  変更があった場合、新しいファイルをリポジトリにコミット＆プッシュします。
+2.  **チャンネルリスト更新**: `scripts/populate_channels.csv.py` を実行し、Slackから最新のチャンネルリストを取得して `channels.csv` を更新します。新しいチャンネルは `backup_enabled=false` として追加されます。
+3.  **メッセージのバックアップ**: `scripts/slack_backup.py` を実行し、`channels.csv` で `backup_enabled=true` に設定されているチャンネルのメッセージを取得します。
+4.  取得したメッセージをTSVファイルに整形し、`archives/` ディレクトリ以下に保存します。
+5.  **変更をコミット**: `archives/` ディレクトリや `channels.csv` に変更があった場合、変更内容をリポジトリにコミット＆プッシュします。
 
 ### 保存形式の例
 
@@ -204,10 +204,10 @@ The goal is to validate the accuracy, execution time, and operational flow of th
 The GitHub Actions workflow (`.github/workflows/slack-backup.yml`) runs on a schedule (`0 15 * * *` UTC, which is 00:00 JST) and can also be triggered manually.
 
 1.  Checks out the repository.
-2.  Runs the Python script (`scripts/slack_backup.py`) to fetch messages from the last 24 hours.
-3.  Formats the messages into a TSV file.
-4.  Saves the file to `archives/<channel-id>/<YYYY>/<MM>/<channel>_<YYYY-MM-DD>.tsv`.
-5.  Commits and pushes the new file to the repository.
+2.  **Update Channel List**: Runs `scripts/populate_channels.csv.py` to fetch the latest channel list from Slack and update `channels.csv`. New channels are added with `backup_enabled=false`.
+3.  **Backup Messages**: Runs `scripts/slack_backup.py` to fetch messages for channels where `backup_enabled=true` in `channels.csv`.
+4.  Formats the messages into a TSV file and saves it under the `archives/` directory.
+5.  **Commit Changes**: If there are any changes in the `archives/` directory or to `channels.csv`, it commits and pushes them to the repository.
 
 ### Example of Storage Format
 
