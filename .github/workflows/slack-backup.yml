@@ -47,7 +47,7 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "chore: backup Slack messages and/or update channel list for $(date +'%Y-%m-%d')"
-                        git pull --rebase
+            git pull --rebase
             git push
             echo "Changes committed and pushed."
           fi
