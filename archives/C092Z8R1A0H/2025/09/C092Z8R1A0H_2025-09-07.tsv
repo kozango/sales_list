@@ -1,0 +1,2 @@
+timestamp_utc	channel_name	user_id	user_name	text	thread_ts
+2025-09-07T07:14:58.660449+00:00	1-4biz-dev_takumisan	U08ENE18M96	takumikoza/古座匠/こざたくみ	体験名簿作成自動化の件、やること把握メモ 1. google form（複数）が一覧で予約者マスター名簿に同期されるようにする 2. チョイスリザーブcsvを記載すると、1と対応するように必要項目の転記が終わるようにする 必要 • 経路別のgoogle form（またはその結果spread sheet)の一覧 • チョイスリザーブのCSVの一括DL権限（サブ権限だとCSV落とせない）     ◦ 予約一覧     ◦ 予約詳細	
